@@ -1,8 +1,9 @@
 const Clarifai = require('clarifai');
+require('dotenv').config();
 
 //You must add your own API key here from Clarifai. 
 const app = new Clarifai.App({
- apiKey: 'YOUR API KEY HERE'
+  apiKey: process.env.CLARIFAI_KEY
 });
 
 const handleApiCall = (req, res) => {
@@ -20,7 +21,10 @@ const handleApiCall = (req, res) => {
     .then(data => {
       res.json(data);
     })
-    .catch(err => res.status(400).json('unable to work with API'))
+    .catch(err => {
+      console.log(err);
+      return res.status(400).json('unable to work with API')
+    })
 }
 
 const handleImage = (req, res, db) => {
