@@ -11,8 +11,8 @@ services:
             - "3000:3000"
         environment:
             POSTGRES_URI: postgres://sally:secret@postgres:5432/smart-brain-docker
-        links:
-            - postgres
+        # links:
+        #     - postgres
         volumes:
             - ./:/usr/src/smart-brain-api
     
